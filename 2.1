@@ -1,0 +1,33 @@
+#include <stdio.h>
+
+void bestTimeToSell(int prices[], int size) {
+    int minPrice = prices[0];
+    int maxProfit = 0;
+    int buyDay = 0, sellDay = 0;
+
+    for (int i = 1; i < size; i++) {
+        if (prices[i] < minPrice) {
+            minPrice = prices[i];
+            buyDay = i;
+        }
+
+        int profit = prices[i] - minPrice;
+        if (profit > maxProfit) {
+            maxProfit = profit;
+            sellDay = i;
+        }
+    }
+
+    printf("Best day to buy: Day %d\n", buyDay + 1); 
+    printf("Best day to sell: Day %d\n", sellDay + 1); 
+    printf("Maximum profit: %d\n", maxProfit);
+}
+
+int main() {
+    int prices[] = {7, 1, 5, 3, 6, 4};
+    int size = sizeof(prices) / sizeof(prices[0]);
+
+    bestTimeToSell(prices, size);
+
+    return 0;
+}
